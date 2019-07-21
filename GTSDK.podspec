@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   mkdir GTSDK.framework/Modules
   touch GTSDK.framework/Modules/module.modulemap
   cat <<-EOF > GTSDK.framework/Modules/module.modulemap
-  framework module AMapFoundationKit {
+  framework module GTSDK {
       header "GeTuiSdk.h"
       export *
       link "z"
