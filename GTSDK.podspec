@@ -7,13 +7,13 @@ Pod::Spec.new do |s|
   s.summary      = "个推iOS SDK CocoaPods集成库"
 
   # 项目主页地址
-  s.homepage     = "https://github.com/GetuiLaboratory/getui-sdk-ios-cocoapods"
+  s.homepage     = "https://github.com/hasayakey/getui-sdk-ios-cocoapods"
   # 许可证/所采用的授权版本
   s.license      = 'MIT'
   # 库的作者
   s.author       = { "个推" => "support@getui.com" }
   # 项目的地址
-  s.source       = { :git => "https://github.com/GetuiLaboratory/getui-sdk-ios-cocoapods.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/hasayakey/getui-sdk-ios-cocoapods.git", :tag => s.version }
 
   # 支持的平台及版本
   s.platform     = :ios, "7.0"
@@ -36,5 +36,20 @@ Pod::Spec.new do |s|
 
   # 是否使用ARC，如果指定具体文件，则具体的问题使用ARC
   s.requires_arc = true
+
+  s.prepare_command     = <<-EOF
+  mkdir GTSDK.framework/Modules
+  touch GTSDK.framework/Modules/module.modulemap
+  cat <<-EOF > GTSDK.framework/Modules/module.modulemap
+  framework module AMapFoundationKit {
+      header "GeTuiSdk.h"
+      export *
+      link "z"
+      link "sqlite3.0"
+      link "c++"
+      link "resolv"
+  }
+  \EOF
+  EOF
 
 end
